@@ -1,0 +1,11 @@
+[Protocol]
+exec=sifcash-qt '%u'
+protocol=sifcash
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

@@ -1,0 +1,67 @@
+#!/bin/bash
+#
+#  sifcashd The Sifcash Core server.
+#
+#
+# chkconfig: 345 80 20
+# description: sifcashd
+# processname: sifcashd
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/sifcashd, see below
+if [ -f /etc/sysconfig/sifcashd ]; then
+        . /etc/sysconfig/sifcashd
+fi
+
+RETVAL=0
+
+prog=sifcashd
+# you can override the lockfile via BITCOIND_LOCKFILE in /etc/sysconfig/sifcashd
+lockfile=${BITCOIND_LOCKFILE-/var/lock/subsys/sifcashd}
+
+# sifcashd defaults to /usr/bin/sifcashd, override with BITCOIND_BIN
+sifcashd=${BITCOIND_BIN-/usr/bin/sifcashd}
+
+# sifcashd opts default to -disablewallet, override with BITCOIND_OPTS
+sifcashd_opts=${BITCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $sifcashd $sifcashd_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

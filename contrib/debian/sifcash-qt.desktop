@@ -1,0 +1,12 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Sifcash
+Comment=Sifcash P2P Cryptocurrency
+Comment[fr]=Sifcash, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Sifcash, eşten eşe kriptografik sanal para birimi
+Exec=sifcash-qt %u
+Terminal=false
+Type=Application
+Icon=sifcash128
+MimeType=x-scheme-handler/sifcash;
+Categories=Office;Finance;

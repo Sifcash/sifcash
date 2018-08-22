@@ -1,0 +1,6 @@
+usr/local/bin/sifcash-qt usr/bin
+share/pixmaps/sifcash32.xpm usr/share/pixmaps
+share/pixmaps/sifcash16.xpm usr/share/pixmaps
+share/pixmaps/sifcash128.png usr/share/pixmaps
+debian/sifcash-qt.desktop usr/share/applications
+debian/sifcash-qt.protocol usr/share/kde4/services/
